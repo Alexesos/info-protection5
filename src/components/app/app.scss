@@ -1,0 +1,118 @@
+.main {
+    display: flex;
+
+    &__container {
+        flex: 1 1 auto;
+        position: relative;
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    &__start,
+    &__mid, 
+    &__end {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__start {
+        > * {
+            position: relative;
+
+            &:not(:last-child) {
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    background: #000;
+
+                    top: calc(100%);
+                    transform: translateY(3px);
+                }
+            }
+        }
+    }
+
+    &__gen {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 5px;
+
+        input {
+            grid-column: span 2;
+        }
+    }
+}
+
+input {
+    padding: 5px 10px;
+    border: 1px solid #606060;
+    transition: .3s ease;
+
+    &:focus {
+        outline: none;
+        border: 1px solid lightcoral;
+    }
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid #606060;
+    transition: .3s ease;
+
+    &:hover {
+        background: darkslategray   ;
+        color: #fff;
+    }
+}
+
+.button {
+    &__active {
+        &_tasks {
+            cursor: pointer;
+            top: 5px;
+            left: 15px;
+            position: fixed;
+            width: 200px;
+            height: 36px;
+            background: #fff;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-radius: 50px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1), 0 -1px 3px rgba(0, 0, 0, 0.08);
+            transition: .3s ease;
+            transform: scaleY(-1);
+
+            &:hover {
+                scale: 1.03;
+            }
+
+            &.active {
+                transform: scaleY(1);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+                span {
+                    transform: scaleY(1);
+                }
+            }
+
+            span {
+                transform: scaleY(-1);
+                transition: .3s ease;
+                font-size: .8rem;
+                max-width: fit-content;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+}
